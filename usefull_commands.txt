@@ -1,0 +1,53 @@
+START MINKUBE
+
+minikube start --driver docker   <-------- to start minikube as docker container
+kubectl get node                 <-------- show all nodes 
+
+
+DEPLOYMNENT
+
+# apply config before deply containers
+kubectl apply -f mongo-config.yml
+kubectl apply -f mongo-secret.yml
+
+# then  apply mongo db deployment because web app depends on it
+kubectl apply -f mongo.yml
+
+# finally deploy our web app
+kubectl apply -f webapp.yml
+
+CHECK DEPLOYMNENT
+
+kubectl get all <-----  show all overview
+kubectl get pod <-----  show all podas
+kubectl get secret <----- show secret 
+
+
+DESCRIBE 
+
+kubectl describe service webapp-service
+kubectl describe pod webapp-deployment-7f46f6d747-v8grt
+
+
+VIEW LOGS
+
+kubectl logs webapp-deployment-7f46f6d747-v8grt
+
+
+
+
+
+
+
+
+
+DIFERRENCES BTW MINIKUBE AND KUBECLT
+
+minikubeclt: can start, stop or delete minikube instances, minikubeclt is executed within our  machine and kubernates 
+is running into minikube instance
+
+kubeclt: configure kubernates cluster (kubeclt is able to connect to any kubernates cluster, local or remote, it's 
+just the gate to get in to kubernates clusters)
+
+
+image demo: docker pull nanajanashia/k8s-demo-app
